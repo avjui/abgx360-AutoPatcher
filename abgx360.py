@@ -80,8 +80,11 @@ def get_xex_game_patches(iso):
         return (None, None, None)
 
 def get_abgx360_exe():
-    return "C:/Windows/SysWOW64/abgx360.exe" if is_64bit() else "C:/Windows/System32/abgx360.exe"
-        
+    if os.name == 'nt':
+        return "C:/Windows/SysWOW64/abgx360.exe" if is_64bit() else "C:/Windows/System32/abgx360.exe"
+    else:
+        return "/usr/local/bin/abgx360"
+    
 def is_64bit():
     return platform.architecture()[0] == "64bit"
 
